@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django_tenants.utils import get_tenant_model, schema_context
 
-from app.models import TanentAddress, TanentEmployee
+from app.models import TenantAddress, TenantEmployee
 
 class Command(BaseCommand):
     help = "Fill the tenants field for each client schema"
@@ -24,7 +24,7 @@ class Command(BaseCommand):
                 try:
                     addresses = Address.objects.all()
                     for address in addresses:
-                        TanentAddress.objects.create(
+                        TenantAddress.objects.create(
                             old_id=address.id,
                             street=address.street,
                             city=address.city,
@@ -34,11 +34,11 @@ class Command(BaseCommand):
 
                     employees = Employee.objects.all()
                     for employee in employees:
-                        TanentEmployee.objects.create(
+                        TenantEmployee.objects.create(
                             first_name=employee.first_name,
                             last_name=employee.last_name,
                             tenant=tenant,
-                            address=TanentAddress.objects.get(old_id=employee.address.id, tenant=tenant),
+                            address=TenantAddress.objects.get(old_id=employee.address.id, tenant=tenant),
                         )
 
                 except Exception as e:

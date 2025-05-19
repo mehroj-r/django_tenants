@@ -11,13 +11,13 @@ class Tenant(TenantMixin):
 class Domain(DomainMixin):
     pass
 
-class TanentEmployee(models.Model):
+class TenantEmployee(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    address = models.ForeignKey('TanentAddress', on_delete=models.CASCADE)
+    address = models.ForeignKey('TenantAddress', on_delete=models.CASCADE)
     tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, null=True)
 
-class TanentAddress(models.Model):
+class TenantAddress(models.Model):
     old_id = models.BigIntegerField(null=True)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=100)

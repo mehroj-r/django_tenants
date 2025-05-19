@@ -3,14 +3,14 @@ from rest_framework import serializers
 from app.models import TenantEmployee, TenantAddress
 
 
-class EmployeeSerializer(serializers.ModelSerializer):
+class TenantEmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TenantEmployee
         fields = '__all__'
 
 
-class AddressSerializer(serializers.ModelSerializer):
+class TenantAddressSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TenantAddress
