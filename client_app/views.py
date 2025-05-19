@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from rest_framework import viewsets
 
-from client_app.models import Employee
-from client_app.serializers import EmployeeSerializer
+from client_app.models import Employee, Address
+from client_app.serializers import EmployeeSerializer, AddressSerializer
 
 
 def index(request):
@@ -11,3 +11,7 @@ def index(request):
 class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+class AddressViewset(viewsets.ModelViewSet):
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializer
